@@ -48,6 +48,22 @@ output "bucket_domain_name" {
 }
 ```
 
+### Datasources
+
+Data sources allow Terraform to read and query data from resources that exist outside of Terraform's management. This is useful when you need to reference external resources or get information from your infrastructure that wasn't created by Terraform. Example: Example:
+
+```hcl
+data "aws_vpc" "existing" {
+  default = true
+}
+
+# Use the data source
+resource "aws_subnet" "example" {
+  vpc_id     = data.aws_vpc.existing.id
+  cidr_block = "10.0.1.0/24"
+}
+```
+
 ## Main Commands
 
 - `terraform init` - Initialize working directory and download providers

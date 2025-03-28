@@ -53,7 +53,9 @@ output "bucket_domain_name" {
 - `terraform init` - Initialize working directory and download providers
 - `terraform plan` - Create an execution plan
 - `terraform apply` - Apply changes to infrastructure
+- `terraform apply -auto-approve` - Apply changes to infrastructure skiping the confirmation
 - `terraform destroy` - Destroy previously created infrastructure
+- `terraform apply -destroy` - Same as above
 - `terraform workspace list` - List available workspaces
 - `terraform workspace new <name>` - Create a new workspace
 - `terraform workspace select <name>` - Switch to a specific workspace

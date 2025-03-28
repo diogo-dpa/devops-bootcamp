@@ -15,6 +15,21 @@ provider "aws" {
 }
 ```
 
+### Resources
+
+Resources are the most important element in the Terraform language. Each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records. Example:
+
+```hcl
+resource "aws_s3_bucket" "example" {
+  bucket = "my-terraform-bucket"
+
+  tags = {
+    Environment = "Dev"
+    Managed_by  = "Terraform"
+  }
+}
+```
+
 ### Variables
 
 Variables help make your Terraform code reusable and configurable. Example:
@@ -66,6 +81,7 @@ resource "aws_subnet" "example" {
 
 ## Main Commands
 
+- `terraform validate` - Checks whether the configuration is syntactically valid and internally consistent
 - `terraform init` - Initialize working directory and download providers
 - `terraform plan` - Create an execution plan
 - `terraform apply` - Apply changes to infrastructure

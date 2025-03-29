@@ -105,6 +105,11 @@ resource "aws_subnet" "example" {
 │       └── outputs.tf
 ```
 
+## Important File Concepts
+
+- `terraform.tfstate`: It will have the final version of the applied structure.
+- `terraform.tfstate.backup`: It will have on version before from the final version of the applied structure, in case it needs to revert it.
+
 ## Workspaces
 
 This project uses Terraform workspaces to manage different environments:

@@ -116,6 +116,40 @@ resource "aws_subnet" "example" {
 - `terraform.tfstate`: It will have the final version of the applied structure.
 - `terraform.tfstate.backup`: It will have on version before from the final version of the applied structure, in case it needs to revert it.
 
+### Variable Files (.tfvars)
+
+Terraform variable definition files (`.tfvars`) allow you to set values for defined variables in separate files. This is useful for managing different environments or keeping sensitive values out of your main configuration. When exists, it overwrites the default value. Example:
+
+```hcl
+// filepath: terraform.tfvars
+environment     = "production"
+s3_bucket_name  = "my-production-bucket"
+region          = "us-east-1"
+instance_type   = "t3.micro"
+```
+
+You can have multiple `.tfvars` files:
+
+- `terraform.tfvars` - Automatically loaded
+- `*.auto.tfvars` - Automatically loaded
+- Custom named files (loaded with `-var-file` flag)
+
+Usage example:
+
+```bash
+# Load specific variable file
+terraform plan -var-file="production.tfvars"
+
+# Override specific variables
+terraform apply -var="environment=staging"
+```
+
+Best Practices:
+
+- Keep sensitive values in `.tfvars` files
+- Add `.tfvars` files to `.gitignore` (except example files)
+- Use different `.tfvars` files for different environments
+
 ## Workspaces
 
 This project uses Terraform workspaces to manage different environments:

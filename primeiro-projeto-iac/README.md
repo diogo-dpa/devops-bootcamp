@@ -92,6 +92,12 @@ resource "aws_subnet" "example" {
 - `terraform workspace new <name>` - Create a new workspace
 - `terraform workspace select <name>` - Switch to a specific workspace
 
+## Advanced Commands
+
+- `terraform plan -destroy --target module.s3.aws_s3_bucket_website_configuration.bucket` - Creates a plan to destroy a specific resource (in this case, the S3 bucket website configuration) within a module without destroying the entire infrastructure. Useful for targeted resource removal or troubleshooting.
+- `terraform destroy --target module.s3.aws_s3_bucket_website_configuration.bucket` - Destroy a specific resource within a module without destroying the entire infrastructure.
+- `terraform apply -destroy --target module.s3.aws_s3_bucket_website_configuration.bucket` - Same as above.
+
 ## Project Structure
 
 ```

@@ -163,6 +163,44 @@ To switch between environments:
 terraform workspace select dev
 ```
 
+### Backend Configuration
+
+Backends in Terraform determine where and how the state file is stored. By default, Terraform uses local backend (stores state file locally), but for team collaboration and better security, remote backends are recommended. Example:
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-lock"
+  }
+}
+```
+
+Common backend types:
+
+- `local` - Stores state file on local disk
+- `s3` - Stores state in AWS S3 bucket
+- `azurerm` - Stores state in Azure Storage
+- `gcs` - Stores state in Google Cloud Storage
+- `remote` - Stores state in Terraform Cloud/Enterprise
+
+Benefits:
+
+- **State Locking**: Prevents concurrent state modifications
+- **Remote Storage**: Enables team collaboration
+- **Encryption**: Secures sensitive data
+- **Versioning**: Maintains state file history
+
+Best Practices:
+
+- Always use remote backends in production
+- Enable encryption for sensitive data
+- Use state locking to prevent conflicts
+- Keep backend configuration in a separate file
+
 ## References
 
 - [Terraform Documentation](https://www.terraform.io/docs)

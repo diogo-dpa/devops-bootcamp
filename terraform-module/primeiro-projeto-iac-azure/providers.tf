@@ -10,5 +10,11 @@ terraform {
 provider "azurerm" {
   # Configuration options
   skip_provider_registration = true
-  features {}
+  features {
+
+    # Prevent accidental deletion of the resource group
+    resource_group {
+      prevent_deletion_if_contains_resources = true
+    }
+  }
 }
